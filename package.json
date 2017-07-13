@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --single-quote --list-different 'app/**/*.ts'",
     "start": "ts-node-dev --fast --respawn app/server.ts",
-    "build:dev": "rimraf ./build && tsc --outDir ./build --sourceMap --allowJs --strict",
-    "build": "rimraf ./build && tsc --outDir ./build --sourceMap --allowJs --strict --noUnusedLocals --noUnusedParameters --noImplicitReturns",
+    "build:dev": "rimraf ./build && tsc app/*.ts app/**/*.ts --outDir ./build --sourceMap --allowJs --strict",
+    "build": "rimraf ./build && tsc app/*.ts app/**/*.ts --outDir ./build --sourceMap --allowJs --strict --noUnusedLocals --noUnusedParameters --noImplicitReturns",
     "server": "pm2 ./build/server.js"
   },
   "repository": {
