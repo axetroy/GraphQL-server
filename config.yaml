@@ -1,0 +1,5 @@
+name: xxx
+userPubPath: ./cert/user.pub
+adminPubPath: ./cert/admin.pub
+db:
+  host: localhost
