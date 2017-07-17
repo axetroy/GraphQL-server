@@ -19,9 +19,9 @@ interface List$ {
 
 import { GraphQLNonNull } from 'graphql';
 
-import PostType from '../../types/post';
+import ExchangeType from '../../types/exchange';
+import ExchangeModal from '../../../modals/exchange.modal';
 import FormQuery, { Query$ } from '../../types/formQuery';
-import PostModal from '../../../modals/post.modal';
 import generateListType from '../../types/generate-list';
 import { RFC3339NanoMaper } from '../../../utils';
 
@@ -29,26 +29,25 @@ import { RFC3339NanoMaper } from '../../../utils';
     graphQL example:
 
     query Me {
-      exchanges(query: {page: 0, limit: 5, sort: "-rate"}) {
+      posts(query: {page: 0,limit: 10, sort: "-title"}) {
         data {
-          from
-          to
-          rate
+          title
+          content
+          author
           id
           active
           createAt
           updateAt
         }
         meta{
-          count num
+          count, page, limit, num
         }
       }
     }
-
  */
 
 export default {
-  type: generateListType('posts', PostType),
+  type: generateListType('Exchanges', ExchangeType),
   args: {
     query: {
       name: 'query',
@@ -68,7 +67,7 @@ export default {
     const sortField: string | null = sortArray[2];
     let list: List$ = {};
     try {
-      const modal = PostModal.find({ active: true });
+      const modal = ExchangeModal.find({ active: true });
       let data: any[] = await modal
         .limit(limit)
         .skip(page * limit)
@@ -80,7 +79,7 @@ export default {
 
       // 计算meta信息
       const num = await modal.count().exec();
-      const total = await PostModal.find({ active: true }).count().exec();
+      const total = await ExchangeModal.find({ active: true }).count().exec();
       list.data = data;
       list.meta = {
         page,
