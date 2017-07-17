@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "name": "typescript-dev",
+      "script": "app/server.ts",
+      "env": {
+        "production": false
+      },
+      "watch": true
+    }
+  ]
+}

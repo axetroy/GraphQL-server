@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --single-quote --list-different 'app/**/*.ts'",
-    "start": "ts-node-dev --fast --respawn app/server.ts",
+    "start": "pm2 start pm2-dev.json",
     "build": "rimraf ./build && tsc -p ./ && echo 'Build Done!'",
     "build:strick": "rimraf ./build && tsc app/*.ts app/**/*.ts --outDir ./build --sourceMap --allowJs --strict --noUnusedLocals --noUnusedParameters --noImplicitReturns",
     "server": "pm2 start pm2.json",
-    "stop": "pm2 delete pm2.json"
+    "stop": "pm2 delete pm2.json && pm2 delete pm2-dev.json"
   },
   "repository": {
     "type": "git",
@@ -44,6 +44,6 @@
     "@types/node": "^8.0.11",
     "@types/uuid": "^3.0.0",
     "rimraf": "^2.6.1",
-    "typescript": "2.3.3"
+    "typescript": "^2.4.1"
   }
 }
