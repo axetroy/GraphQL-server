@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --single-quote --list-different 'app/**/*.ts'",
     "start": "ts-node-dev --fast --respawn app/server.ts",
-    "build:dev": "rimraf ./build && tsc app/*.ts app/**/*.ts --outDir ./build --sourceMap --allowJs --strict",
-    "build": "rimraf ./build && tsc app/*.ts app/**/*.ts --outDir ./build --sourceMap --allowJs --strict --noUnusedLocals --noUnusedParameters --noImplicitReturns",
-    "server": "pm2 ./build/server.js"
+    "build": "rimraf ./build && tsc -p ./ && echo 'Build Done!'",
+    "build:strick": "rimraf ./build && tsc app/*.ts app/**/*.ts --outDir ./build --sourceMap --allowJs --strict --noUnusedLocals --noUnusedParameters --noImplicitReturns",
+    "server": "pm2 start pm2.json",
+    "stop": "pm2 delete pm2.json"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,6 @@
   },
   "homepage": "https://github.com/axetroy/graphQL-example#readme",
   "dependencies": {
-    "@types/express-graphql": "^0.0.33",
     "bluebird": "^3.5.0",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
@@ -35,15 +35,15 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.8",
-    "@types/es6-promise": "^0.0.32",
     "@types/express": "^4.0.36",
+    "@types/express-graphql": "^0.0.33",
     "@types/graphql": "^0.10.0",
     "@types/jsonwebtoken": "^7.2.2",
     "@types/lodash": "^4.14.68",
     "@types/mongoose": "^4.7.18",
     "@types/node": "^8.0.11",
     "@types/uuid": "^3.0.0",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "typescript": "2.3.3"
   }
 }
