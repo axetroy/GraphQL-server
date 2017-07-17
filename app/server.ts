@@ -2,13 +2,13 @@
  * Created by axetroy on 17-7-13.
  */
 
-// Import everything from express and assign it to the express variable
+// Import everything from express and assign it to the express constiable
 import * as express from 'express';
 import {graphql} from 'graphql';
 import * as graphqlHTTP from  'express-graphql';
 
 // Import WelcomeController from controllers entry point
-import schema from './schema/index';
+import schema from './graphql';
 
 // Create a new express application instance
 const app: express.Application = express();
