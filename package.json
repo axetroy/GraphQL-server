@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --single-quote --list-different 'app/**/*.ts'",
-    "start": "pm2 start pm2-dev.json",
+    "start": "nodemon --watch 'app/**/*.ts' --ignore 'app/**/*.spec.ts' --exec 'ts-node' app/server.ts",
     "build": "rimraf ./build && tsc -p ./ && echo 'Build Done!'",
     "build:strick": "rimraf ./build && tsc app/*.ts app/**/*.ts --outDir ./build --sourceMap --allowJs --strict --noUnusedLocals --noUnusedParameters --noImplicitReturns",
     "server": "pm2 start pm2.json",
