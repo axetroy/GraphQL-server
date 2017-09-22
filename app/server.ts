@@ -9,6 +9,7 @@ const fs = require('fs');
 const Promise = require('bluebird');
 const jwt = Promise.promisifyAll(require('jsonwebtoken'));
 
+import rpcServer from './thrift/server';
 import CONFIG from './config';
 
 import schema from './graphql';
@@ -49,5 +50,9 @@ app.post('/graphql', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log(`Listening at http://localhost:${PORT}/`);
+});
+
+rpcServer.listen(9022, function() {
   console.log(`Listening at http://localhost:${PORT}/`);
 });
